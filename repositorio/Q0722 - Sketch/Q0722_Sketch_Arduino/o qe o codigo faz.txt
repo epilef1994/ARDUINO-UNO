@@ -1,0 +1,29 @@
+Este código é um programa para um microcontrolador Arduino que faz uso de um sensor de ultrassom (HC-SR04) e um LED, permitindo medir distâncias com o sensor de ultrassom e controlar a intensidade do LED através de comandos enviados pela porta serial.
+
+Aqui está uma explicação passo a passo do que o código faz:
+
+1. Inclusão de Bibliotecas:
+   - A biblioteca `NewPing` é incluída para simplificar a comunicação com o sensor de ultrassom HC-SR04.
+
+2. Definições de Pinos:
+   - Define constantes para os pinos usados no projeto, nomeadamente `pinTrig` (pino 7) e `pinEcho` (pino 8) para o sensor de ultrassom, e `pinLed` (pino 5) para o LED.
+
+3. Definições:
+   - Define duas constantes: `MAX_DISTANCE` como 100 (representando a distância máxima em centímetros que o sensor de ultrassom pode medir) e `DELAY_LEITURA` como 3000 (representando um intervalo de 3 segundos entre leituras do sensor).
+
+4. Instância do Objeto `NewPing`:
+   - Cria um objeto `sonar` da classe `NewPing`, configurando-o com os pinos do sensor de ultrassom e a distância máxima.
+
+5. Função `setup()`:
+   - Inicializa a comunicação serial a uma taxa de 9600 baud (bits por segundo).
+   - Configura o pino `pinLed` como uma saída, indicando que o LED será controlado via PWM (modulação por largura de pulso).
+
+6. Função `loop()`:
+   - Verifica se passou um período de tempo especificado (o valor de `DELAY_LEITURA` definido em milissegundos) desde a última leitura do sensor. Se o tempo tiver decorrido, ele realiza as seguintes ações:
+     - Mede a distância usando o sensor de ultrassom e armazena o valor na variável `distancia`.
+     - Verifica se a distância medida (`distancia`) é maior do que zero. Se for maior que zero, o programa imprime essa distância na porta serial.
+     - Atualiza a variável `ultimaLeitura` com o valor atual do tempo em milissegundos, para rastrear o momento da última leitura.
+
+   - Em seguida, ele verifica se há dados disponíveis na porta serial. Se houver, ele lê uma mensagem da porta serial, converte-a em um número inteiro (`intensidade`), e controla o LED ajustando sua intensidade usando a função `analogWrite()`.
+
+Em resumo, este código realiza medições de distância usando um sensor de ultrassom a intervalos regulares e envia essas medições pela porta serial. Além disso, permite que o usuário controle a intensidade de um LED enviando comandos pela porta serial. Isso pode ser útil, por exemplo, para criar um sistema que ajuste a iluminação com base na proximidade de objetos detectados pelo sensor de ultrassom.
