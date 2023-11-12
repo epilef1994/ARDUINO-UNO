@@ -15,10 +15,10 @@
 
 // Define o cliente MQTT
 WiFiClient client;
-Adafruit_MQTT_Client mqtt(&client, "io.adafruit.com", 1883, AIO_USERNAME, AIO_KEY);
+Adafruit_MQTT_Client mqtt(&client, "io.adafruit.com", 1883, IO_USERNAME, IO_KEY);
 
 // Define um feed MQTT
-Adafruit_MQTT_Publish feed = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/meu_feed");
+Adafruit_MQTT_Publish feed = Adafruit_MQTT_Publish(&mqtt, IO_USERNAME "/feeds/meu_feed");
 
 void setup() {
   Serial.begin(115200);
